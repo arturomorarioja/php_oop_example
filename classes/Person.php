@@ -23,10 +23,15 @@ Class Person
 
     public function __set(string $property, mixed $value)
     {
-        if ($property === 'email' && !$this->validateEmail($value)) {
-            throw new Exception('Invalid email format.');
+        if ($property === 'email') {
+            if ($this->validateEmail($value)) {
+                $this->$property = $value;
+            } else {
+                throw new Exception('Invalid email format.');
+            }
+        } else {
+            throw new Exception('Invalid property.');
         }
-        $this->$property = $value;
     }
 
     public function __get(string $property): mixed
@@ -38,6 +43,6 @@ Class Person
 
     protected function validateEmail(string $email): bool
     {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
+        return filter_var($email, FILTER_VALIDATE_EMAIL);       
     }
 }

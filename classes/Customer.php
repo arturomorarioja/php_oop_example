@@ -2,7 +2,7 @@
 
 require_once 'Person.php';
 
-class Customer extends Person
+Class Customer extends Person
 {
     public string $companyName;
     public string $companyEmail;
@@ -12,7 +12,7 @@ class Customer extends Person
         string $lastName,
         string $email,
         string $companyName,
-        string $companyEmail
+        string $companyEmail,
     )
     {
         parent::__construct($firstName, $lastName, $email);
@@ -20,7 +20,7 @@ class Customer extends Person
         if ($this->validateEmail($companyEmail)) {
             $this->companyEmail = $companyEmail;
         } else {
-            throw new Exception('Invalid email format.');
+            throw new Exception('Invalid company email.');
         }
     }
 }
